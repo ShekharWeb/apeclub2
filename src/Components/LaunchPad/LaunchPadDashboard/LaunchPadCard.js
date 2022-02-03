@@ -213,6 +213,8 @@ const LaunchPadCard = (props) => {
     liquidity,
     lockupTime,
     time,
+    minCon,
+    maxCon
   } = props;
   // countdownTimeDate
 
@@ -270,7 +272,7 @@ const LaunchPadCard = (props) => {
             </div>
             <img src={profile} alt="ProfilePicture" className="my-1" />
             <p className="name">{name}</p>
-            <span className="bnb my-2">1 BNB = {bnb} DOGI</span>
+            {/* <span className="bnb my-2">1 BNB = {bnb} DOGI</span> */}
             <span className="type">Soft/HaRD Cap:</span>
             <span className="frombnb my-2">
               {frombnb} BNB - {tobnb} BNB
@@ -282,8 +284,9 @@ const LaunchPadCard = (props) => {
           <ProgressBar now={progress} />
           <div className="bottom-content">
             <div className="flex-container">
-              <span className="bnb-last from-last-bnb">0 BNB</span>
-              <span className="bnb-last from-last-bnb">200 BNB</span>
+              <span className="bnb-last from-last-bnb">{minCon} BNB</span>
+
+              <span className="bnb-last from-last-bnb">{maxCon} BNB</span>
             </div>
             <div className="flex-container">
               <span className="liquidity ">Liquidity%</span>

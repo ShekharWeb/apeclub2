@@ -83,11 +83,11 @@ const PresaleManeger = ({tokenDetails}) => {
         </p>
         <div className="py-3">
           {" "}
-          <div className="progress-title">{tokenDetails.weiRaised}/200</div>
+          <div className="progress-title">{tokenDetails.weiRaised}/{tokenDetails.maxContribution}</div>
           <ProgressBar now={tokenDetails.weiRaised} />
           <div className="d-flex justify-content-between align-items-center">
-            <span className="bnb">0 BNB</span>{" "}
-            <span className="bnb">100 BNB</span>
+            <span className="bnb">{(tokenDetails.weiRaised/tokenDetails.maxContribution)*100} BNB</span>{" "}
+            <span className="bnb">{tokenDetails.maxContribution} BNB</span>
           </div>
         </div>
       </Wrapper>

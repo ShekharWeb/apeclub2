@@ -92,6 +92,7 @@ const ManagePresale = () => {
     let _symbol = await presaleContract.methods.tokenSymbol().call();
     let _token = await presaleContract.methods.token().call();
     let _weiRaised = await presaleContract.methods.weiRaised().call();
+    let _maxContribution = await presaleContract.methods.tokenMaxContribution().call();
 
     const tokenArray = [
       {
@@ -119,6 +120,7 @@ const ManagePresale = () => {
     let _item = {
       tokenArray: tokenArray,
       weiRaised: window.web3.utils.fromWei(_weiRaised.toString(), "ether"),
+      maxContribution: window.web3.utils.fromWei(_maxContribution.toString(), "ether"),
     };
 
     setTokenDetails(_item);

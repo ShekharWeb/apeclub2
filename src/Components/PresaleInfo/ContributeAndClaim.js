@@ -172,6 +172,7 @@ const ContributeAndClaim = ({ preSaleAddress,active, account, preSaleContract })
 
   const valueConRef = useRef(null);
 
+  const [maxContribution, setMaxContribution] = useState(0)
   const [totalContributed, settotalContributed] = useState(0);
   const [myContribution, setMyContribution] = useState(0);
 
@@ -197,8 +198,13 @@ const ContributeAndClaim = ({ preSaleAddress,active, account, preSaleContract })
   const loadData = async () => {
     let _weiRaised = await preSaleContract.methods.weiRaised().call();
     settotalContributed(window.web3.utils.fromWei(_weiRaised.toString(), "ether"));
+  
+    let _Maxcontribution = await preSaleContract.methods.tokenMaxContribution().call();
+    setMaxContribution(window.web3.utils.fromWei(_Maxcontribution.toString(), "ether"))
+    
     let _getContribution = await preSaleContract.methods.getContribution(account).call();
     setMyContribution(_getContribution.toString());
+
   }
 
   const contribute = async () => {
@@ -225,11 +231,11 @@ const ContributeAndClaim = ({ preSaleAddress,active, account, preSaleContract })
       <p className="title">Contribute & Claim</p>
       <div className="py-3 py-md-2 py-lg-3">
         {" "}
-        <div className="progress-title">{totalContributed}/200</div>
-        <ProgressBar now={totalContributed} />
+        <div className="progress-title">{totalContributed}/{maxContribution}</div>
+        <ProgressBar now={(totalContributed/maxContribution)*100} />
         <div className="d-flex justify-content-between align-items-center">
           <span className="bnb">{totalContributed} BNB</span>{" "}
-          <span className="bnb">100 BNB</span>
+          <span className="bnb">{maxContribution} BNB</span>
         </div>
       </div>
 
